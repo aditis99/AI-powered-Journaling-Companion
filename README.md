@@ -215,3 +215,7 @@ On-device deployment for personal journaling
 This project is intentionally minimal in interface and maximal in emotional care.
 
 The goal was not to build a journaling app that talks, but one that listens, carefully.
+
+Design Documentarion Link: https://docs.google.com/document/d/148SHDRkfGgS-k_l0H4qo9_snu4Igx-k9cQscC0hSvE4/edit?usp=sharing
+
+Video Presentation: https://vimeo.com/1160842661?share=copy&fl=sv&fe=ci
