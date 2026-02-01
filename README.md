@@ -241,6 +241,6 @@ Using Swagger UI allows judges to:
 
 This keeps the demo focused on the success metrics that matter.
 
-Design Documentation Link: https://docs.google.com/document/d/148SHDRkfGgS-k_l0H4qo9_snu4Igx-k9cQscC0hSvE4/edit?usp=sharing
+Design Documentation Link: [https://docs.google.com/document/d/148SHDRkfGgS-k_l0H4qo9_snu4Igx-k9cQscC0hSvE4/edit?usp=sharing](https://drive.google.com/drive/folders/1O2rUxEr0oWgp5jQNCBsmAxqwFgetryoq?usp=sharing)
 
 Video Presentation: https://vimeo.com/1160842661?share=copy&fl=sv&fe=ci
