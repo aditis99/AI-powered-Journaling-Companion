@@ -50,6 +50,7 @@ Storage: Lightweight in-memory persistence
 
 1️⃣ Clone the repository
 git clone <your-repo-url> // https://github.com/aditis99/AI-powered-Journaling-Companion.git
+
 cd <your-repo-name> // AI Journaling Companion
 
 2️⃣ Create a virtual environment (recommended)
