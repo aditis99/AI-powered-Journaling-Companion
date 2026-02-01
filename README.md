@@ -216,6 +216,27 @@ This project is intentionally minimal in interface and maximal in emotional care
 
 The goal was not to build a journaling app that talks, but one that listens, carefully.
 
-Design Documentarion Link: https://docs.google.com/document/d/148SHDRkfGgS-k_l0H4qo9_snu4Igx-k9cQscC0hSvE4/edit?usp=sharing
+🆚 How This Differs from Typical AI Journaling Apps
+
+- No emotional guessing via LLMs
+- No advice or behavioral prescriptions
+- No sentiment labels shown to users
+- No gamification or streak pressure
+- No external API dependency for emotional understanding
+
+This system prioritizes emotional safety and long-term insight over immediate engagement metrics.
+
+🎯 Why This Demo Uses an API Instead of a UI
+
+The core challenge was emotional correctness and insight quality — not interface design.
+
+Using Swagger UI allows judges to:
+- Test real inputs
+- Observe real outputs
+- Validate behavior deterministically
+
+This keeps the demo focused on the success metrics that matter.
+
+Design Documentation Link: https://docs.google.com/document/d/148SHDRkfGgS-k_l0H4qo9_snu4Igx-k9cQscC0hSvE4/edit?usp=sharing
 
 Video Presentation: https://vimeo.com/1160842661?share=copy&fl=sv&fe=ci
