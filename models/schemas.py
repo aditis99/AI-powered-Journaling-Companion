@@ -201,6 +201,8 @@ class JournalEntryResponse(BaseModel):
         sentiment: Sentiment analysis results
         themes: Detected themes
         reflection: Empathetic reflection and optional prompt
+        engagement_note: Optional gentle encouragement based on entry count
+        reflection_summary: Optional pattern-based summary after 3+ entries
     
     Example:
         response = JournalEntryResponse(
@@ -209,7 +211,9 @@ class JournalEntryResponse(BaseModel):
             content="Today was a good day.",
             sentiment=SentimentAnalysis(...),
             themes=ThemeDetection(...),
-            reflection=EmpathyReflection(...)
+            reflection=EmpathyReflection(...),
+            engagement_note="You're showing up. That matters.",
+            reflection_summary=None
         )
     """
     entry_id: str = Field(
@@ -235,4 +239,12 @@ class JournalEntryResponse(BaseModel):
     reflection: EmpathyReflection = Field(
         ...,
         description="Empathetic reflection and optional prompt"
+    )
+    engagement_note: Optional[str] = Field(
+        None,
+        description="Optional gentle encouragement based on entry count"
+    )
+    reflection_summary: Optional[str] = Field(
+        None,
+        description="Optional pattern-based summary after 3+ entries"
     )

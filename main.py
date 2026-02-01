@@ -8,7 +8,8 @@ from models.schemas import JournalEntryInput, JournalEntryResponse
 from storage.memory_store import get_store
 from services.nlp_service import analyze_entry
 from services.reflection_service import generate_reflection
-
+from services.openai_refinement_service import refine_reflection_with_llm
+from services.insights_service import generate_insights
 
 app = FastAPI(
     title=APP_NAME,
@@ -57,12 +58,14 @@ async def create_entry(entry_input: JournalEntryInput):
     1. Validate input (handled by Pydantic)
     2. Perform local sentiment analysis
     3. Detect themes using rule-based keywords
-    4. Generate empathetic reflection
-    5. Store entry in memory
-    6. Return complete response
+    4. Generate empathetic reflection (template-based)
+    5. Optionally refine reflection wording with OpenAI (if enabled)
+    6. Store entry in memory
+    7. Return complete response
     
     Privacy guarantees:
-    - All processing happens locally (no external API calls)
+    - Core NLP happens locally (sentiment + themes)
+    - Optional OpenAI refinement for wording only (if enabled)
     - Entry stored in-memory only (cleared on restart)
     - No user tracking or authentication
     
@@ -105,27 +108,47 @@ async def create_entry(entry_input: JournalEntryInput):
         }
     """
     try:
-        # Step 1: Perform NLP analysis (sentiment + themes)
-        sentiment, themes = analyze_entry(entry_input.content)
+        # Step 1: Perform NLP analysis (sentiment + themes + emotional mode)
+        # This is the authoritative source of truth
+        sentiment, themes, mode = analyze_entry(entry_input.content)
         
-        # Step 2: Generate empathetic reflection
-        reflection = generate_reflection(sentiment, themes)
+        # Step 2: Generate empathetic reflection (template-based, mode-adaptive)
+        base_reflection = generate_reflection(sentiment, themes, mode)
         
-        # Step 3: Create response object
+        # Step 3: Optionally refine reflection wording with OpenAI
+        # Falls back to base_reflection if disabled or fails
+        reflection = refine_reflection_with_llm(base_reflection, sentiment, themes)
+        
+        # Step 4: Get entry count and recent entries for insights
+        store = get_store()
+        entry_count = store.get_entry_count()
+        recent_entries = store.get_recent_entries(limit=4)
+        
+        # Step 5: Generate insights (engagement note + reflection summary)
+        insights = generate_insights(
+            entry_count=entry_count + 1,  # +1 because current entry not stored yet
+            recent_entries=recent_entries,
+            current_mode=mode
+        )
+        
+        # Step 6: Create response object with insights
         response = JournalEntryResponse(
             entry_id="",  # Will be set by storage
             timestamp=entry_input.timestamp,
             content=entry_input.content,
             sentiment=sentiment,
             themes=themes,
-            reflection=reflection
+            reflection=reflection,
+            engagement_note=insights.get("engagement_note"),
+            reflection_summary=insights.get("reflection_summary")
         )
         
-        # Step 4: Store in memory and get UUID
-        store = get_store()
-        entry_id = store.store_entry(response.dict())
+        # Step 7: Store in memory with mode for pattern aggregation
+        entry_dict = response.dict()
+        entry_dict["mode"] = mode  # Add mode for future pattern detection
+        entry_id = store.store_entry(entry_dict)
         
-        # Step 5: Update response with generated entry_id
+        # Step 8: Update response with generated entry_id
         response.entry_id = entry_id
         
         return response

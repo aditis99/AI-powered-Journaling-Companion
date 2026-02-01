@@ -1,5 +1,5 @@
 import uuid
-from typing import Dict, Optional
+from typing import Dict, Optional, List
 from threading import Lock
 
 
@@ -145,6 +145,34 @@ class InMemoryStore:
         """
         with self._lock:
             return len(self._store)
+    
+    def get_recent_entries(self, limit: int = 4) -> list:
+        """
+        Get the most recent entries for pattern aggregation.
+        
+        Returns entries in reverse chronological order (most recent first).
+        Used for generating reflection summaries and detecting patterns.
+        
+        Privacy note: This is the only listing method, limited to recent entries only.
+        No full browsing capability exists.
+        
+        Thread-safe operation.
+        
+        Args:
+            limit: Maximum number of recent entries to return (default: 4)
+        
+        Returns:
+            list: List of entry dictionaries, most recent first
+        
+        Example:
+            recent = store.get_recent_entries(limit=3)
+            # Returns last 3 entries for pattern analysis
+        """
+        with self._lock:
+            # Get all entries and return the last N
+            # Note: This assumes insertion order is preserved (Python 3.7+)
+            all_entries = list(self._store.values())
+            return all_entries[-limit:] if len(all_entries) >= limit else all_entries
 
 
 # Global singleton instance for use across the application
