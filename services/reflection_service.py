@@ -8,22 +8,22 @@ from models.schemas import SentimentAnalysis, ThemeDetection, EmpathyReflection
 # Focus on acknowledging the effort of journaling and reflecting complexity
 ACKNOWLEDGMENT_TEMPLATES = {
     "positive": [
-        "There's a warmth in what you've shared today, and it comes through clearly.",
-        "It sounds like you're experiencing some lightness right now, and that's meaningful.",
-        "The positive energy in your words feels genuine and present.",
-        "You're noticing good things around you, and taking time to acknowledge them matters.",
+        "There's a warmth in what you've written, and it feels genuine.",
+        "Something lighter is present here, and you're noticing it.",
+        "This reads like a moment where things feel a bit easier, even if just for now.",
+        "You're catching something good as it passes through — that kind of noticing matters.",
     ],
     "neutral": [
-        "Thank you for taking the time to write today—it's an act of care in itself.",
-        "You're showing up to reflect, even when things feel uncertain, and that takes effort.",
-        "There's value in simply putting your thoughts into words, and you're doing that.",
-        "You're making space to check in with yourself, and that's worth recognizing.",
+        "You showed up to write today, even without a clear reason to. That counts.",
+        "There's something steady in taking time to check in, even when nothing stands out.",
+        "This feels like you're just observing where you are, without needing it to mean anything yet.",
+        "You're here, putting words to something that doesn't have a clear shape. That's enough.",
     ],
     "negative": [
-        "It sounds like things feel heavy right now, and it makes sense that you're feeling this way.",
-        "You're navigating something difficult, and choosing to write about it is an act of courage.",
-        "The weight of what you're experiencing comes through, and it's okay to feel this.",
-        "You're sitting with some hard emotions, and that takes real strength.",
+        "This feels heavy, and it makes sense that it would.",
+        "You're sitting with something difficult right now, and that takes more than it looks like.",
+        "There's weight in what you've written, and you don't have to carry it alone or make sense of it yet.",
+        "Something hard is present here, and you're letting it be seen. That matters.",
     ]
 }
 
@@ -58,22 +58,22 @@ REFLECTIVE_PROMPTS = [
 # Focus: Mirror emotional state accurately, lower cognitive load, avoid premature reframing
 MODE_ADAPTIVE_TEMPLATES = {
     "low_energy": [
-        "It sounds like one of those low-energy, restless days — tired but not quite sleepy, wanting something different without the energy to start it.",
-        "This feels like a day where nothing quite lands, where you're present but not engaged, and that's okay.",
-        "There's a flatness to today that doesn't need fixing — sometimes energy just isn't there, and that doesn't mean something is wrong.",
-        "You're here, even when motivation isn't, and that counts for something.",
+    "This feels like one of those in-between days — not heavy, not light, just quietly passing. Nothing here needs to turn into insight.",
+    "It sounds like energy never really showed up today. You’re still here, still noticing — and that’s enough for now.",
+    "There’s a flat, tired quality here that doesn’t ask for fixing. Some days are just meant to be moved through slowly.",
+    "This reads like a day without much pull in either direction. You’re allowed to let it be exactly that."
     ],
     "anxious": [
-        "It sounds like your mind is carrying a lot right now, and the weight of it is real.",
-        "There's a heaviness in what you're holding, and it makes sense that it feels this way.",
-        "You're navigating something difficult, and the fact that you're writing about it matters.",
-        "The worry and weight you're describing — it's present, and it's okay to acknowledge that without needing to resolve it right now.",
+    "Your thoughts seem busy and repetitive right now, like they don’t know where to land. Noticing that weight is enough for this moment.",
+    "It sounds like your mind has been looping — carrying things that don’t need to be resolved all at once.",
+    "There’s a sense of mental pressure here, of holding a lot internally. You don’t have to untangle any of it right now.",
+    "This feels mentally heavy, even if nothing specific stands out. It’s okay to pause without making sense of it."
     ],
     "calm": [
-        "There's a clarity in what you've shared, and it comes through in your words.",
-        "You're noticing things as they are, and there's value in that kind of awareness.",
-        "It sounds like you're in a reflective space, taking stock of where you are.",
-        "There's a groundedness to what you've written, and that feels intentional.",
+    "There’s a reflective tone in what you’ve written — like you’re observing rather than reacting.",
+    "You’re noticing small patterns in how you feel, and that kind of awareness tends to grow quietly over time.",
+    "This reads like a moment of clarity, without urgency. Sometimes that’s where insight begins.",
+    "You’re taking a step back and seeing things as they are. That kind of noticing has its own value."
     ]
 }
 
@@ -83,22 +83,22 @@ MODE_ADAPTIVE_TEMPLATES = {
 # CALM: Open-ended, exploratory prompts that invite gentle reflection
 MODE_ADAPTIVE_PROMPTS = {
     "low_energy": [
-        "If today didn't need to be productive, what's one small thing that might make it feel a little lighter?",
-        "What's one thing you're not forcing yourself to do right now?",
-        "Is there anything you're letting yourself off the hook for today?",
-        "What would it look like to just be, without needing to accomplish anything?",
+        "What's one thing you're letting yourself not do today?",
+        "If nothing had to be productive right now, what would that feel like?",
+        "Is there anything small that might make this day feel a little less flat?",
+        "What would it look like to just move through today without expecting much from it?",
     ],
     "anxious": [
-        "What's one thing that feels solid or steady right now, even if it's small?",
-        "What are you noticing in your body or your surroundings in this moment?",
-        "Is there anything you're holding that doesn't need to be solved today?",
-        "What would it feel like to set this down, just for a moment?",
+        "What's one thing around you right now that feels steady, even if it's small?",
+        "Is there anything you're holding that doesn't need an answer today?",
+        "What would it feel like to pause here, without trying to solve anything?",
+        "What are you noticing in your body or your surroundings in this exact moment?",
     ],
     "calm": [
-        "What else feels present as you sit with this?",
-        "Is there more that wants to be said?",
-        "What are you noticing as you write?",
-        "What feels most alive in this moment?",
+        "What else is present as you sit with this?",
+        "Is there more here that wants to be noticed?",
+        "What are you seeing now that you might not have seen before?",
+        "What feels most alive or real in this moment?",
     ]
 }
 
