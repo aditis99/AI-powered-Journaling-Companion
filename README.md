@@ -54,7 +54,9 @@ cd <your-repo-name>
 
 2️⃣ Create a virtual environment (recommended)
 python -m venv venv
+
 source venv/bin/activate   # Mac/Linux
+
 venv\Scripts\activate      # Windows
 
 3️⃣ Install dependencies
